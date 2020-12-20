@@ -1,0 +1,31 @@
+.snowfall-container {
+  display: block;
+  height: 100vh;
+  left: 100px;
+  margin: 0;
+  padding: 0;
+  -webkit-perspective-origin: top center;
+  perspective-origin: top center;
+  -webkit-perspective: 150px;
+  perspective: 150px;
+
+  position: fixed;
+  top: 100px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  width: 100%;
+  z-index: 99999;
+}
+
+.snowflake {
+  pointer-events: none;
+  color: #ddf;
+  display: block;
+  font-size: 24px;
+  left: -12px;
+  line-height: 24px;
+  position: absolute;
+  top: -12px;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+}
