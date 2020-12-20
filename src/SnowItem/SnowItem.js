@@ -1,4 +1,4 @@
-import "./snowBall.css";
+import "./snowItem.css";
 import ReactDOM from "react-dom";
 import React from "react";
 import { useState, useEffect, useRef } from "react";
@@ -11,15 +11,16 @@ const period = [
   (n) => 0.1 * (Math.sin(0.75 * n) + Math.cos(0.25 * n) - 1),
 ];
 
+const fun = ["⛄", "🎁", "🦌", "☃", "🍪"];
+
 function Graphic(props) {
   return (
     <span
       style={{ transform: props.transform }}
       className="snowflake"
       onClick={props.handleItem}
-      data-snow={props.snow}
     >
-      ❄
+      {props.icon}
     </span>
   );
 }
@@ -47,7 +48,7 @@ class SnowBall extends React.Component {
     let life = Math.ceil(Math.random() * 4000) + 6000;
     let orig = life;
     let per = Math.floor(Math.random() * period.length);
-
+    let snowItem = fun[Math.floor(Math.random() * fun.length)];
     this.setState(
       {
         trans_x: x,
@@ -56,6 +57,7 @@ class SnowBall extends React.Component {
         life: life,
         origLife: orig,
         periodfunction: per,
+        item: snowItem,
       },
       () => {
         requestAnimationFrame(this.tick);
@@ -70,7 +72,7 @@ class SnowBall extends React.Component {
     let dt = (origLife - curLife) / origLife;
 
     if (dt <= 1.0) {
-      let y = 30 * dt;
+      let y = 100 * dt;
       let p = period[periodfunction];
       let x = p(dt * 2 * Math.PI) + trans_x;
 
@@ -88,8 +90,8 @@ class SnowBall extends React.Component {
     return (
       <Graphic
         transform={`translate3d(${this.state.trans_x}vw, ${this.state.trans_y}vh, ${this.state.trans_z}px)`}
+        icon={this.state.item}
         handleItem={this.props.handleItem}
-        snow={this.props.snow}
       />
     );
   }
