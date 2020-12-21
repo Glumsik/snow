@@ -6,9 +6,9 @@ import { useState, useEffect, useRef } from "react";
 const period = [
   (n) => 0.05 * Math.sin(n),
   (n) => 0.05 * Math.cos(n),
-  (n) => 0.5 * (Math.sin(n) * Math.cos(2 * n)),
+  (n) => 0.05 * (Math.sin(n) * Math.cos(2 * n)),
   (n) => 0.08 * (Math.sin(0.25 * n) - Math.cos(0.75 * n) + 1),
-  (n) => 0.1 * (Math.sin(0.75 * n) + Math.cos(0.25 * n) - 1),
+  (n) => 0.05 * (Math.sin(0.75 * n) + Math.cos(0.25 * n) - 1),
 ];
 
 function Graphic(props) {
@@ -43,10 +43,10 @@ class SnowBall extends React.Component {
   create() {
     let x = Math.random() * 100;
     let y = 0;
-    let z = Math.random() < 0.4 ? Math.ceil(Math.random() * 100) + 25 : 0;
+    let z = Math.random() < 0.9 ? Math.ceil(Math.random() * 100) + 25 : 0;
     let life = Math.ceil(Math.random() * 4000) + 6000;
     let orig = life;
-    let per = Math.floor(Math.random() * period.length);
+    let per = 4;
 
     this.setState(
       {
@@ -70,11 +70,11 @@ class SnowBall extends React.Component {
     let dt = (origLife - curLife) / origLife;
 
     if (dt <= 1.0) {
-      let y = 30 * dt;
+      let y = 100 * dt;
       let p = period[periodfunction];
       let x = p(dt * 2 * Math.PI) + trans_x;
 
-      curLife -= 1000 / 60;
+      curLife -= 500 / 60;
 
       this.setState({ trans_y: y, trans_x: x, life: curLife }, () => {
         requestAnimationFrame(this.tick);

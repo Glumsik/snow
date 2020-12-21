@@ -1,26 +1,22 @@
 import "./App.css";
 import SnowBall from "./SnowBall/SnowBall";
 import SnowItem from "./SnowItem/SnowItem";
-import "jquery-snowfall";
-import { useState, useEffect } from "react";
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const qwe = document.querySelector(".App");
-//   console.log(qwe);
-//   window.$(document).snowfall({ maxSpeed: 1, minSize: 5 });
-//   window.$(document).snowfall({ collection: qwe });
-// });
+import { useState, useEffect } from "react";
 
 function App() {
   const [snowBalls, setSnowBalls] = useState([]);
+  const [countSnow, setCountSnow] = useState(0);
   const [count, setCount] = useState(0);
 
   const handleItem = (el) => {
-    const element = el.target.dataset.snow;
-    const snows = snowBalls;
-    console.log(element);
-    snows.splice(element, 1);
-    setSnowBalls(snows);
+    const element = Number(el.target.dataset.snow);
+    const newArr = snowBalls.filter((item) => {
+      console.log(item, element);
+      return item !== element;
+    });
+    setSnowBalls(newArr);
+    setCountSnow(countSnow + 1);
   };
 
   const addSnowBals = (el) => {
@@ -32,7 +28,7 @@ function App() {
   useEffect(() => {
     let counter = count;
     const interval = setInterval(() => {
-      if (counter >= 5) {
+      if (counter >= 20) {
         clearInterval(interval);
       } else {
         setCount((count) => count + 1);
@@ -42,7 +38,7 @@ function App() {
     }, 500);
     return () => clearInterval(interval);
   }, []);
-
+  console.log(snowBalls);
   return (
     <div className="App">
       <header className="App-header"></header>
@@ -54,12 +50,17 @@ function App() {
         {snowBalls.map((item) => {
           return <SnowBall handleItem={handleItem} key={item} snow={item} />;
         })}
+        <div className="snow_ball_count">{countSnow}</div>
 
+        <div className="tree"></div>
         {/* <SnowBall />
         <SnowBall />
         <SnowBall />
         <SnowItem />
         <SnowItem /> */}
+        <div className="tree">
+          <img src="./img/tree.svg"></img>
+        </div>
       </div>
     </div>
   );
