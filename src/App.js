@@ -1,13 +1,17 @@
 import "./App.css";
 import SnowBall from "./SnowBall/SnowBall";
 import SnowItem from "./SnowItem/SnowItem";
+import Gift from "./Gift/Gift";
 
 import { useState, useEffect } from "react";
+
+const fun = ["❄", "⛄", "🎁", "🦌", "🍪"];
 
 function App() {
   const [snowBalls, setSnowBalls] = useState([]);
   const [countSnow, setCountSnow] = useState(0);
   const [count, setCount] = useState(0);
+  const [timer, setTimer] = useState(10);
 
   const handleItem = (el) => {
     const element = Number(el.target.dataset.snow);
@@ -17,6 +21,7 @@ function App() {
     });
     setSnowBalls(newArr);
     setCountSnow(countSnow + 1);
+    setTimer(timer + 2);
   };
 
   const addSnowBals = (el) => {
@@ -38,7 +43,27 @@ function App() {
     }, 500);
     return () => clearInterval(interval);
   }, []);
-  console.log(snowBalls);
+
+  useEffect(() => {
+    let counter = timer;
+    const interval = setInterval(() => {
+      if (counter < 1) {
+        clearInterval(interval);
+      } else {
+        setTimer((timer) => timer - 1);
+        counter--;
+        console.log(counter);
+      }
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [timer]);
+
+  const randowItem = () => {
+    let snowItem = fun[Math.floor(Math.random() * fun.length)];
+    console.log(snowItem);
+    return snowItem;
+  };
+
   return (
     <div className="App">
       <header className="App-header"></header>
@@ -47,17 +72,28 @@ function App() {
         aria-hidden="true"
         role="presentation"
       >
-        {snowBalls.map((item) => {
-          return <SnowBall handleItem={handleItem} key={item} snow={item} />;
-        })}
+        <div>
+          {snowBalls.map((item) => {
+            console.log(randowItem());
+            return (
+              <SnowBall
+                handleItem={handleItem}
+                key={item}
+                snow={item}
+                snowItem={randowItem()}
+              />
+            );
+          })}
+          <SnowItem />
+          <SnowItem />
+        </div>
         <div className="snow_ball_count">{countSnow}</div>
+        <div className="snow_ball_timer">{timer}</div>
 
         <div className="tree"></div>
-        {/* <SnowBall />
-        <SnowBall />
-        <SnowBall />
-        <SnowItem />
-        <SnowItem /> */}
+
+        <Gift />
+
         <div className="tree">
           <img src="./img/tree.svg"></img>
         </div>

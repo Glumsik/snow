@@ -6,12 +6,12 @@ import { useState, useEffect, useRef } from "react";
 const period = [
   (n) => 0.05 * Math.sin(n),
   (n) => 0.05 * Math.cos(n),
-  (n) => 0.5 * (Math.sin(n) * Math.cos(2 * n)),
+  (n) => 0.05 * (Math.sin(n) * Math.cos(2 * n)),
   (n) => 0.08 * (Math.sin(0.25 * n) - Math.cos(0.75 * n) + 1),
-  (n) => 0.1 * (Math.sin(0.75 * n) + Math.cos(0.25 * n) - 1),
+  (n) => 0.05 * (Math.sin(0.75 * n) + Math.cos(0.25 * n) - 1),
 ];
 
-const fun = ["⛄", "🎁", "🦌", "☃", "🍪"];
+const fun = ["⛄", "🎁", "🦌", "🍪"];
 
 function Graphic(props) {
   return (
