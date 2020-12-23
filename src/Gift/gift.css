@@ -1,7 +1,7 @@
 .gift_1 {
   position: absolute;
   bottom: -50px;
-  left: 50%;
+  left: 500px;
   width: 100px;
   height: 100px;
   transform: translate3d(-50%, -50%, 0);
@@ -62,7 +62,7 @@
 .gift_2 {
   position: absolute;
   bottom: -85px;
-  left: 61%;
+  left: 600px;
   width: 144px;
   height: 100px;
   transform: translate3d(-50%, -50%, 0);
@@ -170,7 +170,7 @@
   float: left;
   position: absolute;
   bottom: -4px;
-  left: 57%;
+  left: 567px;
   z-index: 1;
 }
 .gift-holder .gift:first-child {
@@ -206,7 +206,10 @@ li:before {
   top: -4px;
   left: 1px;
 }
-li:after {
+.red:after,
+.yellow:after,
+.pink::after,
+.green::after {
   content: "";
   top: -14px;
   left: 9px;
@@ -298,4 +301,16 @@ li:after {
   li {
     margin: 0 15px 20px 15px;
   }
+}
+
+.left {
+  position: absolute;
+  left: 0;
+  top: 50px;
+}
+
+.right {
+  position: absolute;
+  right: 0;
+  top: 50px;
 }

@@ -1,0 +1,22 @@
+.logo {
+  display: block;
+  left: -12px;
+  line-height: 24px;
+  position: absolute;
+  top: -12px;
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  width: 70px;
+  background-color: aliceblue;
+  user-select: none;
+  cursor: pointer;
+
+  -moz-user-select: none;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+
+  -ms-user-select: none;
+  user-select: none;
+}

@@ -1,5 +1,5 @@
 body {
-  background-color: cadetblue;
+  background-color: #283334;
 }
 .snowfall-container {
   display: block;
@@ -22,21 +22,44 @@ body {
 .snow_ball_count {
   position: absolute;
   left: 0;
-  font-size: 50px;
+  font-size: 70px;
+  top: 5px;
   pointer-events: none;
+  left: 70px;
+  color: white;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .snow_ball_timer {
   position: absolute;
-  right: 0;
-  font-size: 50px;
+  right: 70px;
+  top: 5px;
+  font-size: 70px;
   pointer-events: none;
+  color: white;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .tree {
   position: absolute;
   bottom: 0;
   width: 700px;
-  left: 25%;
+  left: 300px;
   pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

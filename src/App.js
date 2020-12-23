@@ -1,15 +1,18 @@
 import "./App.css";
 import SnowBall from "./SnowBall/SnowBall";
 import SnowItem from "./SnowItem/SnowItem";
+import LogoItem from "./LogoItem/LogoItem";
 import Gift from "./Gift/Gift";
 
 import { useState, useEffect } from "react";
 
-const fun = ["❄", "⛄", "🎁", "🦌", "🍪"];
-
 function App() {
   const [snowBalls, setSnowBalls] = useState([]);
   const [countSnow, setCountSnow] = useState(0);
+
+  const [logo, setLogo] = useState([]);
+  const [countLogo, setCountLogo] = useState(0);
+
   const [count, setCount] = useState(0);
   const [timer, setTimer] = useState(10);
 
@@ -20,8 +23,17 @@ function App() {
       return item !== element;
     });
     setSnowBalls(newArr);
+    setTimer(timer + 5);
+  };
+
+  const handleItemLogo = (el) => {
+    const element = Number(el.target.dataset.logo);
+    console.log(element);
+    const newArr = snowBalls.filter((item) => {
+      return item !== element;
+    });
+    setLogo(newArr);
     setCountSnow(countSnow + 1);
-    setTimer(timer + 2);
   };
 
   const addSnowBals = (el) => {
@@ -30,10 +42,30 @@ function App() {
     setSnowBalls(snows);
   };
 
+  const addLogo = (el) => {
+    const logs = logo;
+    logs.push(el);
+    setLogo(logs);
+  };
+
+  useEffect(() => {
+    let counter = countLogo;
+    const interval = setInterval(() => {
+      if (counter >= 10) {
+        clearInterval(interval);
+      } else {
+        setCountLogo((countLogo) => countLogo + 1);
+        addLogo(counter);
+        counter++;
+      }
+    }, 500);
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     let counter = count;
     const interval = setInterval(() => {
-      if (counter >= 20) {
+      if (counter >= 10) {
         clearInterval(interval);
       } else {
         setCount((count) => count + 1);
@@ -58,12 +90,6 @@ function App() {
     return () => clearInterval(interval);
   }, [timer]);
 
-  const randowItem = () => {
-    let snowItem = fun[Math.floor(Math.random() * fun.length)];
-    console.log(snowItem);
-    return snowItem;
-  };
-
   return (
     <div className="App">
       <header className="App-header"></header>
@@ -74,18 +100,17 @@ function App() {
       >
         <div>
           {snowBalls.map((item) => {
-            console.log(randowItem());
-            return (
-              <SnowBall
-                handleItem={handleItem}
-                key={item}
-                snow={item}
-                snowItem={randowItem()}
-              />
-            );
+            return <SnowBall handleItem={handleItem} key={item} snow={item} />;
           })}
           <SnowItem />
-          <SnowItem />
+          <LogoItem />
+        </div>
+        <div>
+          {logo.map((item) => {
+            return (
+              <LogoItem handleItem={handleItemLogo} key={item} logo={item} />
+            );
+          })}
         </div>
         <div className="snow_ball_count">{countSnow}</div>
         <div className="snow_ball_timer">{timer}</div>

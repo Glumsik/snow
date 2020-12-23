@@ -5,7 +5,7 @@ import App from "./App";
 import Snowfall from "react-snowfall";
 ReactDOM.render(
   <React.StrictMode>
-    <Snowfall />
+    {/* <Snowfall /> */}
     <App />
   </React.StrictMode>,
   document.getElementById("root")

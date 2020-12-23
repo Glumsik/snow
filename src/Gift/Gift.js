@@ -21,8 +21,18 @@ function Graphic() {
         <div class="gift orange">
           <div class="ribbon"></div>
         </div>
+      </div>
+      <div className="left">
         <li class="red"></li>
         <li class="yellow"></li>
+        <li class="pink"></li>
+        <li class="blue"></li>
+      </div>
+      <div className="right">
+        <li class="green"></li>
+        <li class="red"></li>
+        <li class="green"></li>
+        <li class="blue"></li>
       </div>
     </div>
   );
